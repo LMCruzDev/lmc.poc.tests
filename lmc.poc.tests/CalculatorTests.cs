@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using FluentAssertions;
@@ -9,11 +8,11 @@ using Xunit;
 
 namespace lmc.poc.tests
 {
-    public class UnitTest1
+    public class CalculatorTests
     {
         private readonly Calculator calculator;
 
-        public UnitTest1()
+        public CalculatorTests()
         {
             calculator = new Calculator();
         }
@@ -24,7 +23,7 @@ namespace lmc.poc.tests
             CsvCalculationDataMapping csvMapper = new CsvCalculationDataMapping();
             CsvParser<CsvCalculationData> csvParser = new CsvParser<CsvCalculationData>(csvParserOptions, csvMapper);
             var result = csvParser
-                .ReadFromFile(@"Teste.csv", Encoding.ASCII)
+                .ReadFromFile(@"TestData.csv", Encoding.ASCII)
                 .ToList();
 
             return result.Select(x => new object[]
